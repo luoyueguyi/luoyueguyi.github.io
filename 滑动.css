@@ -37,7 +37,7 @@ header {
     height: 100%;
     position: relative;
     overflow: hidden;
-    background: url(02.gif);
+    background: url(烟花宵宫.gif);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -94,10 +94,10 @@ p.credits {
 }
 
 p a {
-	font-weight: bolder;
-	color: #000;
-	text-decoration: none;
-	font-size: 14px;
+    font-weight: bolder;
+    color: #000;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 @supports (font-variant-caps: small-caps) {
