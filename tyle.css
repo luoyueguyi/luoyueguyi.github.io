@@ -15,7 +15,7 @@ body {
     margin-top: 80px;
     justify-content: center;
 
-    background-image: url("01.gif");
+    background-image: url("02.gif");
     background-position: center center;
     background-repeat: no-repeat;
     background-color: rgb(7, 7, 7);
@@ -104,7 +104,8 @@ a {
     text-decoration: none;
 
 }
-a:hover{
+
+a:hover {
     color: #e07a5f;
 }
 
