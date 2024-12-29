@@ -1,6 +1,7 @@
 * {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
 }
 
 body {
@@ -13,14 +14,13 @@ body {
             #d7b3e3,
             #efb3d5,
             #f9bccc);
-
+    font-family: 'Lato', sans-serif;
 }
 
 .shell {
     width: 100%;
     display: flex;
     flex-direction: column;
-
 }
 
 header {
@@ -37,9 +37,7 @@ header {
     height: 100%;
     position: relative;
     overflow: hidden;
-    background: url(芙芙01.gif);
-    background-repeat: no-repeat;
-    background-position: center center;
+    background: url(芙芙01.gif) no-repeat center center;
     background-size: cover;
     transform: scale(1);
     transition: transform 0.5s ease;
@@ -55,18 +53,16 @@ header {
 }
 
 .main h2 {
-    font-size: 50px;
-    margin-bottom: 40px;
+    font-size: 2.5rem;  /* Adjusted for better mobile view */
+    margin-bottom: 20px;
+    text-align: center;
 }
 
 .main span {
-    padding: 0 100px;
-    font-size: 30px;
+    padding: 0 2rem;
+    font-size: 1.2rem;  /* Adjusted font size for mobile */
+    text-align: center;
 }
-
-
-
-@import url('https://fonts.googleapis.com/css?family=Lato:700,900');
 
 @font-face {
     font-family: Arno Pro;
@@ -81,7 +77,7 @@ header {
 }
 
 p {
-    font-family: Arno Pro, serif;
+    font-family: 'Arno Pro', serif;
     font-size: 1.4rem;
     line-height: 1.4;
     margin: 0;
@@ -136,7 +132,7 @@ article header {
 
 article h1 {
     margin-top: 0;
-    font-size: 3rem;
+    font-size: 2.5rem;  /* Adjusted font size */
 }
 
 article h2 {
@@ -144,9 +140,8 @@ article h2 {
     font-size: 1.5rem;
 }
 
-h1,
-h2 {
-    font-family: Lato, sans-serif;
+h1, h2 {
+    font-family: 'Lato', sans-serif;
 }
 
 @media all and (max-width: 1600px) {
@@ -159,9 +154,17 @@ h2 {
     .multicol {
         column-count: 2;
     }
+
+    .main h2 {
+        font-size: 2rem; /* Adjusted for better readability */
+    }
+
+    .main span {
+        font-size: 1rem; /* Adjusted for smaller screens */
+    }
 }
 
-@media all and (max-width:800px) {
+@media all and (max-width: 800px) {
     article h2 {
         break-after: avoid;
     }
@@ -169,9 +172,23 @@ h2 {
     .multicol {
         column-count: 1;
     }
+
+    .main {
+        margin-top: 50px;
+    }
+
+    .main h2 {
+        font-size: 1.8rem;
+        margin-bottom: 15px;
+    }
+
+    .main span {
+        font-size: 1rem;
+        padding: 0 1.5rem;
+    }
 }
 
-@media all and (max-width:600px) {
+@media all and (max-width: 600px) {
     body {
         margin: 0;
     }
@@ -192,5 +209,19 @@ h2 {
 
     h1 {
         margin-bottom: 0;
+        font-size: 2rem; /* Adjusted font size */
+    }
+
+    .main h2 {
+        font-size: 1.6rem; /* Adjusted font size */
+    }
+
+    .main span {
+        font-size: 1rem;
+    }
+
+    /* Background Image Adjustment */
+    .img {
+        background-position: top center; /* Ensures better display on smaller screens */
     }
 }

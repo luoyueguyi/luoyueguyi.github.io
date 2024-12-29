@@ -1,4 +1,3 @@
-/* 通用样式 */
 * {
     margin: 0;
     padding: 0;
@@ -10,12 +9,9 @@
 body {
     height: 100vh;
     display: flex;
-    position: sticky;
-    top: 0;
-    align-items: flex-start;  /* 改为flex-start以确保顶部对齐 */
-    margin-top: 80px;
-    justify-content: center;
-
+    flex-direction: column;
+    justify-content: flex-start; /* 保证顶部内容不会被覆盖 */
+    align-items: center;
     background-image: url("/img/02.gif");
     background-position: center center;
     background-repeat: no-repeat;
@@ -23,40 +19,115 @@ body {
     background-clip: border-box;
     border: #e07a5f;
     background-attachment: fixed;
-    background-size: 120%;
+    background-size: cover;
 }
 
-/* .shell 的布局优化 */
+/* Media query for mobile */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        margin-top: 50px;
+        background-size: cover;
+    }
+
+    .shell {
+        flex-direction: column; /* 在手机端，按钮垂直排列 */
+        align-items: center; /* 居中对齐 */
+    }
+
+    .button,
+    .portrait {
+        width: 90%;
+        height: 50px;
+        line-height: 50px;
+        font-size: 18px;
+        margin: 10px 0; /* 增加垂直间距 */
+    }
+
+    .portrait::before {
+        width: 120px;
+        height: 120px;
+        transform: translate(0, -40px); /* 调整头像位置 */
+    }
+
+    .information {
+        width: 90%;
+        transform: translate(-20px, -200px);
+        border-radius: 10px;
+        padding: 20px 0;
+        line-height: 0;
+        height: 0;
+        transition: .3s;
+        opacity: 0;
+    }
+
+    .portrait:hover .information {
+        opacity: 1;
+        line-height: 65px;
+        transform: translate(-20px, -10px);
+        height: auto;
+    }
+
+    .button:hover {
+        background-color: #4cc9f0;
+        box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
+    }
+
+    .button ul li {
+        height: 0;
+        opacity: 0;
+        transform: translateY(-65px);
+        background-color: #4cc9f0;
+    }
+
+    .button:hover li {
+        height: 50px;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .button li:hover {
+        background-color: #ffa09d;
+        box-shadow: 10px 10px 99px 6px rgb(244, 124, 97);
+    }
+
+    /* 隐藏头像 */
+    .portrait {
+        display: none;
+    }
+}
+
 .shell {
     display: flex;
-    justify-content: center;
-    width: 100%;  /* 确保外部容器能够适配不同屏幕 */
-    padding: 0 10px; /* 为外部容器加点内边距，避免元素靠边显示 */
+    flex-direction: column; /* 将按钮和头像垂直排列 */
+    align-items: center; /* 水平居中 */
+    margin-top: 20px; /* 预留空间给导航栏 */
+    z-index: 1; /* 确保在导航栏下面 */
 }
 
-/* .button 和 .portrait 按钮 */
-.button,
-.portrait {
-    display: flex;
-    justify-content: space-around;
+.button {
     background-color: #323442;
     width: 170px;
     height: 65px;
     text-align: center;
     line-height: 65px;
-    transition: 0.3s;
+    transition: .3s;
     cursor: pointer;
-    margin: 5px 0; /* 按钮之间适当的垂直间距 */
 }
 
-/* 头像效果 */
+.portrait {
+    position: relative;
+    margin-top: 20px; /* 确保头像不会和按钮重叠 */
+    z-index: 0; /* 让头像在按钮下面 */
+}
+
 .portrait::before {
     content: '';
     display: block;
     width: 150px;
     height: 150px;
-    border-radius: 50%;
-    transform: translate(10px, -40px);
+    border-radius: 100%;
+    transform: translate(10px, 10px); /* 调整头像位置 */
     background-image: url("/img/01.gif");
     background-size: cover;
     background-position: center center;
@@ -68,7 +139,6 @@ body {
     background-size: 200%;
 }
 
-/* .information 区域 */
 .information {
     width: 220px;
     background-color: #ffa09d;
@@ -77,17 +147,15 @@ body {
     padding: 20px 0;
     line-height: 0;
     height: 0;
-    transition: 0.3s;
+    transition: .3s;
     opacity: 0;
 }
 
-/* .button的悬浮效果 */
 .button:hover {
     background-color: #4cc9f0;
     box-shadow: 10px 10px 99px 6px rgba(76, 201, 240, 1);
 }
 
-/* 按钮的悬浮子项 */
 .button li:hover {
     background-color: #ffa09d;
     box-shadow: 10px 10px 99px 6px rgb(244, 124, 97);
@@ -95,13 +163,12 @@ body {
 
 .button ul li {
     height: 0;
-    transition: 0.2s;
+    transition: .2s;
     opacity: 0;
     transform: translateY(-65px);
     background-color: #4cc9f0;
 }
 
-/* 链接的样式 */
 a {
     color: #ffffff;
     text-decoration: none;
@@ -111,85 +178,15 @@ a:hover {
     color: #e07a5f;
 }
 
-/* 按钮悬浮时子项显示 */
 .button:hover li {
     height: 65px;
     opacity: 1;
     transform: translateY(0);
 }
 
-/* 头像悬浮显示信息 */
 .portrait:hover .information {
     opacity: 1;
     line-height: 65px;
     transform: translate(-20px, -10px);
     height: auto;
-}
-
-/* 手机端优化 */
-@media (max-width: 768px) {
-    body {
-        margin-top: 20px;  /* 适配手机屏幕，减少顶部空白 */
-        background-size: cover; /* 背景图适配 */
-    }
-
-    .shell {
-        flex-direction: column; /* 按钮竖直排列 */
-        padding: 0 20px; /* 增加内边距，避免元素过于紧凑 */
-    }
-
-    .button,
-    .portrait {
-        width: 100%;  /* 按钮和头像宽度100% */
-        height: 50px;  /* 减小按钮高度 */
-        font-size: 18px;  /* 减小字体大小 */
-        line-height: 50px;  /* 调整行高 */
-    }
-
-    .portrait::before {
-        width: 120px;  /* 减小头像尺寸 */
-        height: 120px;
-    }
-
-    .information {
-        width: 100%;  /* 信息框宽度100% */
-        transform: translate(-20px, -150px); /* 调整信息框位置 */
-        height: auto;
-    }
-
-    .button li {
-        font-size: 16px;  /* 减小子项字体 */
-    }
-
-    /* 为了让悬浮效果适配小屏幕，减少阴影效果 */
-    .button:hover {
-        box-shadow: 5px 5px 60px 4px rgba(76, 201, 240, 0.6);
-    }
-
-    .button li:hover {
-        box-shadow: 5px 5px 60px 4px rgb(244, 124, 97);
-    }
-}
-
-/* 超小屏幕设备优化 */
-@media (max-width: 480px) {
-    body {
-        margin-top: 10px; /* 进一步减少顶部空白 */
-    }
-
-    .button,
-    .portrait {
-        height: 45px;  /* 进一步减小按钮高度 */
-        font-size: 16px;  /* 适应手机小屏的字体大小 */
-        line-height: 45px;
-    }
-
-    .portrait::before {
-        width: 100px;
-        height: 100px;
-    }
-
-    .information {
-        transform: translate(-20px, -120px); /* 进一步调整信息框位置 */
-    }
 }
